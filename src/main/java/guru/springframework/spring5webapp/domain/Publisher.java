@@ -26,6 +26,10 @@ public class Publisher {
     private String state;
     private String zipCode;
 
+    @OneToMany
+    @JoinColumn(name = "publisher_id")
+    private Set<Book> books = new HashSet<>();
+
     public Publisher(String name, String address, String city, String state, String zipCode) {
         this.name = name;
         this.address = address;

@@ -28,20 +28,26 @@ public class BootstrapData implements CommandLineRunner {
         Book ddd = new Book("Domain Driven Design", "123456789");
         peter.getBooks().add(ddd);
         ddd.getAuthors().add(peter);
+        ddd.setPublisher(asa);
+        asa.getBooks().add(ddd);
 
         authorRepository.save(peter);
         bookRepository.save(ddd);
+        publisherRepository.save(asa);
 
         Author agatha = new Author("Agatha", "Christie");
         Book midnightTrain = new Book("The midnight train", "987654321");
         agatha.getBooks().add(midnightTrain);
         midnightTrain.getAuthors().add(agatha);
+        midnightTrain.setPublisher(asa);
+        asa.getBooks().add(midnightTrain);
 
         authorRepository.save(agatha);
         bookRepository.save(midnightTrain);
+        publisherRepository.save(asa);
 
         System.out.println("Started in boostrap!");
-        System.out.println("Publishers: " + publisherRepository.count());
+        System.out.println("Number books of Publisher: " + asa.getBooks().size());
         System.out.println("Number of books: " + bookRepository.count());
     }
 }
